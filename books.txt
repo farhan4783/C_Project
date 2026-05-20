@@ -1,0 +1,7 @@
+1001|c programming|Farhan Khan|computer science|100|99|1
+1002|Clean Code|Robert Martin|Software Engineering|3|3|1
+1003|The C Programming Language|Dennis Ritchie|Computer Science|5|5|0
+1004|Clean Code|Robert Martin|Software Engineering|3|3|0
+1005|The C Programming Language|Dennis Ritchie|Computer Science|5|5|0
+1006|Clean Code|Robert Martin|Software Engineering|3|3|0
+1007|r programing|farhan|computer|12|12|0

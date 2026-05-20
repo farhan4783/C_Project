@@ -1,0 +1,7 @@
+2001|John Doe|03117654321|john@gmail.com|1|1001
+2002|Farhan Khan|03001234567|farhan@email.com|0
+2003|John Doe|03117654321|john@gmail.com|0
+2004|Fahan Khan|03001234567|farhan@email.com|0
+2005|John Doe|03117654321|john@gmail.com|0
+2006|Faraz Khan|03001234567|faraz@email.com|0
+2007|John Doe|03117654321|john@gmail.com|0

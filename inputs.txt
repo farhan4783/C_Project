@@ -1,0 +1,35 @@
+3
+admin
+admin123
+1
+The C Programming Language
+Dennis Ritchie
+Computer Science
+5
+1
+Clean Code
+Robert Martin
+Software Engineering
+3
+6
+Faraz Khan
+03001234567
+faraz@email.com
+6
+John Doe
+03117654321
+john@gmail.com
+8
+2001
+1001
+8
+2001
+1002
+9
+2001
+1002
+10
+
+11
+
+13

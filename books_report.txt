@@ -1,0 +1,16 @@
+=========================================================================
+                       LIBRARY BOOKS STATUS REPORT                       
+=========================================================================
+ID     | Title                          | Author               | Category     | Total | Avail | Issues
+-------------------------------------------------------------------------
+1001   | The C Programming Language     | Dennis Ritchie       | Computer Sci | 5     | 4     | 1     
+1002   | Clean Code                     | Robert Martin        | Software Eng | 3     | 3     | 1     
+1003   | The C Programming Language     | Dennis Ritchie       | Computer Sci | 5     | 5     | 0     
+1004   | Clean Code                     | Robert Martin        | Software Eng | 3     | 3     | 0     
+1005   | The C Programming Language     | Dennis Ritchie       | Computer Sci | 5     | 5     | 0     
+1006   | Clean Code                     | Robert Martin        | Software Eng | 3     | 3     | 0     
+=========================================================================
+Total Book Titles: 6
+Total Copies in Library: 24
+Copies Currently Available: 23
+Copies Currently Issued: 1

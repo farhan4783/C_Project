@@ -4,6 +4,9 @@ A modular, robust, and premium command-line Library Management System built in s
 
 ---
 
+<video src="Recording.mp4" width="600" controlsList="nodownload"></video>
+
+
 ## ✨ Features
 
 ### 📖 Book Management (CRUD & Search)

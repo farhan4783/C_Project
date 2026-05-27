@@ -6,7 +6,7 @@
 #include <io.h>
 #include "library.h"
 
-// Global variables defined
+
 Book* books = NULL;
 int book_count = 0;
 int book_capacity = 0;
@@ -15,7 +15,7 @@ Member* members = NULL;
 int member_count = 0;
 int member_capacity = 0;
 
-// Setup and Cleanup
+
 void init_library(void) {
     books = NULL;
     book_count = 0;
@@ -42,7 +42,7 @@ void free_library(void) {
     member_capacity = 0;
 }
 
-// Helpers for dynamic arrays
+
 void add_book_to_array(Book b) {
     if (book_count >= book_capacity) {
         book_capacity = book_capacity == 0 ? 10 : book_capacity * 2;
@@ -69,7 +69,7 @@ void add_member_to_array(Member m) {
     members[member_count++] = m;
 }
 
-// Robust Delimited String Parser
+
 int get_next_field(const char* src, int* pos, char* dest, int max_len, char delim) {
     if (src[*pos] == '\0') {
         return 0;
@@ -92,28 +92,23 @@ void parse_book_line(const char* line, Book* b) {
     int pos = 0;
     char field[150];
     
-    // ID
+    
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     b->id = atoi(field);
     
-    // Name
+    
     if (!get_next_field(line, &pos, b->name, MAX_NAME, '|')) return;
     
-    // Author
     if (!get_next_field(line, &pos, b->author, MAX_NAME, '|')) return;
     
-    // Category
     if (!get_next_field(line, &pos, b->category, MAX_CATEGORY, '|')) return;
     
-    // Quantity
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     b->quantity = atoi(field);
     
-    // Available Quantity
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     b->available_quantity = atoi(field);
     
-    // Issue Count
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     b->issue_count = atoi(field);
 }
@@ -122,24 +117,18 @@ void parse_member_line(const char* line, Member* m) {
     int pos = 0;
     char field[150];
     
-    // ID
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     m->id = atoi(field);
     
-    // Name
     if (!get_next_field(line, &pos, m->name, MAX_NAME, '|')) return;
     
-    // Contact
     if (!get_next_field(line, &pos, m->contact, MAX_CONTACT, '|')) return;
     
-    // Email
     if (!get_next_field(line, &pos, m->email, MAX_EMAIL, '|')) return;
     
-    // Issued Count
     if (!get_next_field(line, &pos, field, sizeof(field), '|')) return;
     m->issued_count = atoi(field);
     
-    // Book IDs
     for (int i = 0; i < MAX_BORROWED; i++) {
         m->issued_book_ids[i] = -1;
     }
@@ -150,7 +139,6 @@ void parse_member_line(const char* line, Member* m) {
     }
 }
 
-// File loading & saving
 void load_data(void) {
     FILE* fb = fopen("books.txt", "r");
     if (fb) {
@@ -213,7 +201,6 @@ void save_data(void) {
     }
 }
 
-// Utility Validation Functions
 int validate_email(const char* email) {
     int len = strlen(email);
     if (len < 5) return 0;
@@ -276,9 +263,7 @@ int case_insensitive_strstr(const char* str, const char* substr) {
     return strstr(str_lower, sub_lower) != NULL;
 }
 
-// Binary Search Algorithm
 int binary_search_books_by_id(int id) {
-    // Sort actual array first by ID (keeps library sorted)
     for (int i = 1; i < book_count; i++) {
         Book key = books[i];
         int j = i - 1;
@@ -304,7 +289,6 @@ int binary_search_books_by_id(int id) {
     return -1;
 }
 
-// Console and Input Helpers
 void clear_screen(void) {
     system("cls");
 }
@@ -312,13 +296,11 @@ void clear_screen(void) {
 void get_string_input(char* buffer, int max_len, const char* prompt) {
     printf("%s", prompt);
     if (fgets(buffer, max_len, stdin)) {
-        // remove trailing newline
         int len = strlen(buffer);
         while (len > 0 && (buffer[len - 1] == '\n' || buffer[len - 1] == '\r')) {
             buffer[len - 1] = '\0';
             len--;
         }
-        // Trim leading space if any
         int start = 0;
         while (buffer[start] != '\0' && isspace((unsigned char)buffer[start])) {
             start++;
@@ -345,7 +327,6 @@ int get_int_input(const char* prompt) {
 
 void get_masked_password(char* password, int max_len) {
     if (!_isatty(0)) {
-        // Stdin is redirected (e.g. automated test piping). Read standard.
         if (fgets(password, max_len, stdin)) {
             int len = strlen(password);
             while (len > 0 && (password[len - 1] == '\n' || password[len - 1] == '\r')) {
@@ -360,11 +341,11 @@ void get_masked_password(char* password, int max_len) {
     char ch;
     while (1) {
         ch = _getch();
-        if (ch == 13 || ch == 10) { // Enter key
+        if (ch == 13 || ch == 10) { 
             password[i] = '\0';
             printf("\n");
             break;
-        } else if (ch == 8) { // Backspace key
+        } else if (ch == 8) { 
             if (i > 0) {
                 i--;
                 printf("\b \b");
@@ -380,7 +361,7 @@ void get_masked_password(char* password, int max_len) {
 
 void press_enter_to_continue(void) {
     if (!_isatty(0)) {
-        // Redirected input: do not pause, as it breaks pipes
+       
         return;
     }
     printf("\nPress Enter to continue...");
@@ -388,7 +369,7 @@ void press_enter_to_continue(void) {
     fgets(temp, sizeof(temp), stdin);
 }
 
-// Book Operations (CRUD)
+
 void add_book(void) {
     clear_screen();
     printf("===========================================\n");
@@ -463,7 +444,7 @@ void view_books(void) {
     printf("4. None (As Loaded)\n");
     int choice = get_int_input("Enter choice (1-4): ");
     
-    // Copy books array for sorting
+  
     Book* temp_books = malloc(book_count * sizeof(Book));
     if (!temp_books) {
         printf("Memory allocation failed!\n");
@@ -472,7 +453,7 @@ void view_books(void) {
     memcpy(temp_books, books, book_count * sizeof(Book));
     
     if (choice == 1) {
-        // Insertion Sort by ID
+      
         for (int i = 1; i < book_count; i++) {
             Book key = temp_books[i];
             int j = i - 1;
@@ -483,7 +464,7 @@ void view_books(void) {
             temp_books[j + 1] = key;
         }
     } else if (choice == 2) {
-        // Insertion Sort by Title (A-Z)
+       
         for (int i = 1; i < book_count; i++) {
             Book key = temp_books[i];
             int j = i - 1;
@@ -494,7 +475,7 @@ void view_books(void) {
             temp_books[j + 1] = key;
         }
     } else if (choice == 3) {
-        // Insertion Sort by Author Name (A-Z)
+       
         for (int i = 1; i < book_count; i++) {
             Book key = temp_books[i];
             int j = i - 1;
@@ -582,7 +563,7 @@ void update_book(void) {
         strcpy(books[index].category, buffer);
     }
     
-    // Update Quantity
+    
     int currently_issued = books[index].quantity - books[index].available_quantity;
     while (1) {
         printf("Enter New Total Quantity (Current: %d, Must be at least %d): ", 
@@ -897,7 +878,7 @@ void issue_book(void) {
         return;
     }
     
-    // Check if member already has this book
+    
     for (int i = 0; i < members[m_idx].issued_count; i++) {
         if (members[m_idx].issued_book_ids[i] == book_id) {
             printf("\n\033[1;31mError: Member '%s' already has this book issued.\033[0m\n", members[m_idx].name);

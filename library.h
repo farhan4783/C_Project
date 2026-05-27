@@ -26,7 +26,7 @@ typedef struct {
     int issued_count;
 } Member;
 
-// Global dynamically-allocated arrays and counts
+
 extern Book* books;
 extern int book_count;
 extern int book_capacity;
@@ -35,34 +35,34 @@ extern Member* members;
 extern int member_count;
 extern int member_capacity;
 
-// Core setup and cleanup
+
 void init_library(void);
 void free_library(void);
 
-// File Persistence
+
 void load_data(void);
 void save_data(void);
 
-// Book Operations (CRUD & Search)
+
 void add_book(void);
 void view_books(void);
 void update_book(void);
 void delete_book(void);
 void search_books(void);
 
-// Member Operations
+
 void add_member(void);
 void view_members(void);
 
-// Transactions (Issue / Return)
+
 void issue_book(void);
 void return_book(void);
 
-// Analytics & Reports
+
 void show_analytics(void);
 void export_reports(void);
 
-// Utilities & Data Validation
+
 int validate_email(const char* email);
 int validate_contact(const char* contact);
 void get_masked_password(char* password, int max_len);
